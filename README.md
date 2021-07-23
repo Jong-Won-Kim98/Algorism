@@ -115,3 +115,81 @@ int main() {
 	return 0;
 }
 ```
+
+6. 문자열을 입력 받고 문자열에서 자연수를 찾아 자연수의 약수를 출력하시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	char a[100];
+	int res = 0, cnt = 0, i;
+
+	cin >> a;
+
+	for (i = 0; a[i] != '\0'; i++) {
+		if (a[i] >= 48 && a[i] <= 57) {
+			// a[i] != '\0': 배열 a의 끝 인덱스 번호인 공백을 만날경우
+			res = res * 10 + (a[i] - 48);
+		} 
+	}
+	cout << res << endl;
+	for (i = 1; i <= res; i++) {
+		if (res % i == 0) cnt++;
+	}
+	cout << cnt;
+	return 0;
+}
+
+```
+
+7. 문자열을 입력받고 문자열에 공백이 있을경우 지우고 대문자가 있을경우 소문자로 변환하여 출력한다.
+```C++
+#include <iostream>
+
+using namespace std;
+
+int main() {
+	char a[101], b[101];
+	int i, p = 0;
+	gets_s(a);
+
+	for (i = 0; a[i] != '\0'; i++) {
+		if (a[i] != ' ') {
+			if (a[i] >= 65 && a[i] <= 90) {
+				b[p++] = a[i] + 32;
+			}
+			else b[p++] = a[i];
+		}
+	}
+	
+	b[p] = '\0';
+	cout << b;
+	return 0;
+}
+
+```
+
+8. 문자열을 입력받아 괄호의 '(' 와 ')'의 짝이 맞을 경우 "Yes"를 맞지 않을 경우 "No"를 출력하시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	char a[31];
+	int i, cnt = 0;
+
+	cin >> a;
+	
+	for (i = 0; a[i] != '\0'; i++) {
+		if (a[i] == '(') cnt++;
+		else if (a[i] == ')') cnt--;
+		if (cnt < 0) break;
+	}
+	if (cnt == 0) cout << "Yes";
+	else  cout << "No";
+		
+	return 0;
+}
+
+```
