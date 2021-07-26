@@ -189,7 +189,157 @@ int main() {
 	if (cnt == 0) cout << "Yes";
 	else  cout << "No";
 		
+	return
+
+``` 
+
+9. 입력한 자연수까지의 약수를 구하시오.
+```C++
+int main()
+{
+	int num, i, j, cnt;
+
+	cin >> num;
+
+	for (i = 1; i <= num; i++)
+	{
+		cnt = 0;
+		for (j = 1; j <= i; j++) {
+			if (i % j == 0) cnt++;
+		}
+		cout << cnt;
+	}
 	return 0;
 }
+// 위 코드는 작은 숫자에서는 잘 돌아가지만 num에 큰 수를 대입할 경우 알고리즘의 시간 복잡도가 너무 커져 시간이 오래 걸린다.
+```
 
+```C++
+#include <iostream>
+using namespace std;
+int cnt[50001];
+// 전역번수
+int main() 
+{
+	int num, i, j;
+
+	cin >> num;
+
+	for (i = 1; i <= num; i++) {
+		for (j = i; j <= num; j = j + i) {
+			cnt[j]++;
+		}
+	}
+	for (i = 1; i <= num; i++) {
+		cout << cnt[i];
+	}
+	return 0;
+	// cnt배열을 생성하고, i의 배수인 수를 카운트 +1 해줌으로서 알고리즘의 시간 복잡도를 줄이는 방법
+}
+```
+
+10. n개의 자연수를 입력하고 자릿수의 합이 가장 큰 수를 출력하시오
+```C++
+#include <iostream>
+using namespace std;
+int digit_sum(int x) {
+	int tmp, sum = 0;
+	while (x>0)
+	{
+		tmp = x % 10;
+		sum += tmp;
+		x = x / 10;
+		// x를 10으로 나눈 후 나머지를 tmp에 저장하고 sum으로 tmp를 누적하여 더하는 함수
+	}
+	return sum;
+}
+int main()
+{
+	int n, num, i, sum, max = -2147000000, res;
+	cin >> n;
+	for (i = 0; i < n; i++) {
+		cin >> num;
+		sum = digit_sum(num);
+		if (sum > max) {
+			max = sum;
+			res = num;
+		}
+		else if (sum == max) {
+			if (num > res) res = num;
+		}
+	}
+	cout << res;
+	return 0;
+}
+```
+
+11. 자연수 n을 입력하고 각 자연수의 자릿수를 총 합하시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int num, i, res, cnt=0;
+
+	cin >> num;
+	for (i = 1; i <= num; i++) {
+		res = i;
+		while (res > 0) {
+			res = res / 10;
+			cnt++;
+		}
+	}
+	cout << cnt;
+
+	return 0;
+}
+```
+
+12. 자연수 n을 입력한 후 몇개의 숫자를 사용했는지 구하시오.
+```C++
+#include <iostream>
+using namespace std;
+int main()
+{
+	int num, count = 1, d = 9, res = 0, sum = 0;
+	// count: 입력된 자연수 n의 자릿수
+	// d: 최대 자릿수를 구하기 위한 값 ex) 0+9=9, 90+9=99
+	cin >> num;
+
+	while (sum + d < num) {
+		res = res + (count * d);
+		sum = sum + d;
+		count++;
+		d = d * 10;
+	}
+	res = res + ((num - sum) * count);
+	cout << res;
+	return 0;
+}
+```
+
+13. n자리 자연수 중 가장 많이 사용된 숫자를 출력하시오.
+```C++
+int main()
+{
+	int i, num, max = -2147000000, res;
+	char a[101];
+	// 입력된 자연수를 자리별로 하나하나 읽기 위한 배열
+	cin >> a;
+
+	for (i = 0; a[i] != '\0'; i++); {
+		num = a[i] - 48;
+		// 문자열 배열 a에 저장되어 있기 때문에 아스키 코드 번호로 받아들여 -48을 해준다.
+		ch[num]++;
+	}
+	for (i = 0; i <= 9; i++) {
+		if (ch[i] >= max) {
+			max = ch[i];
+			res = i;
+		}
+	}
+	cout << res;
+	return 0;
+}
 ```
