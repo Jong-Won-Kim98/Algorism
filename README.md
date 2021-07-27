@@ -446,3 +446,72 @@ int main() {
 	return 0;
 }
 ```
+
+17. 개수를 입력한 후 1부터 m까지의 합을 구하는 알고리즘을 짜시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n, sum = 0, i, j, m, ans;
+	//n = 학생 수, ans = 학새이 제출한 정답 sum = 실제 정답
+	cin >> n;
+
+	for (i = 1; i <= n; i++) {
+		cin >> m >> ans;
+		sum = 0;
+		for(j = 1; j <= m; j++) {
+			sum += j;
+		}
+		if (ans == sum) cout << "Yse";
+		else cout << "No";
+	}
+	return 0;
+}
+```
+
+18. 시간과 경보음이 울리는 기준을 입력한 후 시간동안 연속으로 몇초의 경보음이 울렸는지 측정하는 알고리즘을 짜시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n, count = 0, i, max = -2146000000, val, a;
+	// n = 입력된 시간, max = 연속적으로 울린 경보음을 측정하기 위한 시간, val = 경보음 기준
+	cin >> n >> val;
+	for (i = 1; i <= n; i++) {
+		cin >> a;
+		if (a > val) count++;
+		else count == 0;
+		if (count > max) max = count;
+	}
+	if (max == 0) max = -1;
+	cout << max;
+	return 0;
+}
+```
+
+19. 한 줄에 앉아 있는 학생의 키 정보가 입력될 경우 뒷 사람보다 큰 사람이 몇명이 있는지 구하시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	int i, n, max = -2147000000, a[101], count=0;
+	cin >> n;
+	for (i = 1; i <= n; i++) {
+		cin >> a[i];
+	}
+	max = a[n];
+	for (i = n - 1; i >= 1; i--) {
+		if (max < a[i]) {
+			max = a[i];
+			count++;
+		}
+	}
+	cout << count;
+	return 0;
+}
+```
+
+20. 
