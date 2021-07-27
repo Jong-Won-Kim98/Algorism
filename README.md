@@ -343,3 +343,106 @@ int main()
 	return 0;
 }
 ```
+
+14. 자연수를 입력 받으면 그 수를 뒤집어 소수일 경우 출력하시오.(단, 끝 수가 0일 경우 0은 무시하고 출력한다.)
+```C++
+#include <iostream>
+using namespace std;
+
+int reverse(int x) {
+	int res = 0, tmp;
+	while (x > 0) {
+		tmp = x % 10;
+		// 입력 받은 자연수를 첫번째 자리 숫자 부터 저장하기 위함
+		res = res * 10 + tmp;
+		// 0으로 초기화한 res를 첫번째 자리수 인 tmp를 더해줌으로 숫자를 반전 시킨다.
+		x = x / 10;
+	}
+	return res;
+}
+
+bool isPrime(int x) {
+	int i;
+	if (x == 1) return false;
+	bool flag = true;
+	for (i = 2; i < x; i++) {
+		if (x % i == 0) {
+			flag = false;
+			break;
+		}
+	}
+	return flag;
+}
+int main() {
+	int i, num, n, tmp;
+	cin >> n;
+
+	for (i = 1; i <= n; i++) {
+		cin >> num;
+		tmp = reverse(num);
+		if (isPrime(tmp)) cout << tmp << " ";
+	}
+	return 0;
+}
+```
+
+15. 1보다 큰 자연수를 입력받고 1부터 n까지 소수의 개수를 출력받으시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n, i, j, flag, count = 0;
+	//flag: 깃발 역활로 소수일 경우 1 소수가 아닐경우 0으로 초기화하여 구분한다.
+	cin >> n;
+	for (i = 2; i <= n; i++) {
+		flag = 1;
+		for (j = 2; j*j <= i; j++) {
+			if (i % j == 0) {
+				break;
+			}
+		}
+		if (flag == 1) count++;
+	}
+	cout << count;
+	return 0;
+}
+```
+
+16. Anagram, 두 문자열이 알파벳의 나열 순서를 다르지만 그 구성이 일치하면 두 단어를 아나그램이라고 합니다, 두 문자열이 아나그램일 경우 Yes 아닐 경우 No를 출력하시오
+```C++
+#include <iostream>
+#include <algorithm>
+using namespace std;
+char a[60], b[60];
+// 알파벳 소문자 + 대문자를 각 배열의 인덱스 번호에 알파벤 순서로 저장하여 해당 인덱스의 알파벳이 나올경우 ++
+int main() {
+	int i;
+	char S1[101];
+	cin >> S1;
+
+	for (i = 0; S1[i] != '\0'; i++) {
+		if (S1[i] >= 65 && S1[i] <= 90) {
+			a[S1[i] - 64]++;
+			//대문자일 경우 a배열 해당 인덱스에 ++
+		}
+		else a[S1[i] - 70]++;
+		//소문자일 경우
+	}
+	cin >> S1;
+	for (i = 0; S1[i] != '\0'; i++) {
+		if (S1[i] >= 65 && S1[i] <= 90) {
+			b[S1[i] - 64]++;
+		}
+		else b[S1[i] - 70]++;
+	}
+	for (i = 1; i <= 52; i++) {
+		if (a[i] != b[i]) {
+			cout << "No";
+			exit(0);
+		}
+	}
+	cout << "Yes";
+	return 0;
+}
+```
