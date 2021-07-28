@@ -514,4 +514,73 @@ int main() {
 }
 ```
 
-20. 
+20. 두 사람이 가위바위보를 했을 때 경우의 수를 입력하고 승자를 출력하시오.
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n, i, a[101], b[101];
+
+	cin >> n;
+
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 0; i < n; i++) {
+		cin >> b[i];
+	}
+	for (i = 0; i < n; i++) {
+		if (a[i] == b[i]) cout << "D" << endl;
+		else if (a[i] == 1 && b[i] == 3) cout << "A" << endl;
+		else if (a[i] == 2 && b[i] == 1) cout << "A" << endl;
+		else if (a[i] == 3 && b[i] == 2) cout << "A" << endl;
+		else cout << "B" << endl;
+	}
+	return 0;
+}
+```
+
+21. 두 사람의 입력된 숫자를 비교하여 이긴 사람은 승점 3점을 가져가고 비길 경우 모두 승점 1을 가져감으로 최종 승자를 구하시오.(단, 승점이 같은 경우 마지막 라운드의 승자가 우승한다)
+```C++
+#include <iostream>
+using namespace std;
+
+int main() {
+	int res = 0, a[11], b[11], cntA = 0, cntB = 0, i, n;
+
+	cin >> n;
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 0; i < n; i++) {
+		cin >> b[i];
+	}
+	for (i = 0; i < n; i++) {
+		if (a[i] > b[i]) {
+			cout << "A ";
+			cntA = cntA + 3;
+			res = 1;
+		}
+		else if (a[i] == b[i]) {
+			cout << "D ";
+			cntA = cntA +1;
+			cntB = cntB +1;
+		}
+		else {
+			cout << "B ";
+			cntB = cntB + 1;
+			res = 2;
+		}
+
+	}
+	if (cntA == cntB) {
+		if (res == 1) cout << "A";
+		else cout << "B";
+	}
+	else if (cntA > cntB) cout << "A";
+	else cout << "B";
+	
+	return 0;
+}
+```
