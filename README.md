@@ -584,3 +584,89 @@ int main() {
 	return 0;
 }
 ```
+
+22. n, k가 입력되고 n일 만큼의 날짜 동안 k일 만큼 연속적으로 차이가 나는 최대 온도를 구하시오.
+```C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	int n, k, i, sum = 0, max = -2147000000;
+	cin >> n >> k;
+	vector<int> a(n);
+	// 배열 a의 동적 할당 형태
+
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 0; i < k; i++) {
+		sum += a[i];
+	}
+	max = sum;
+	for (i = k; i < n; i++) {
+		sum = sum + (a[i] - a[i - k]);
+		if (sum > max) max = sum;
+	}
+	cout << max;
+	return 0;
+}
+```
+
+23. n개의 자연수를 입력하고 상향구간의 개수를 출력하시오.
+```C++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	int n, i, pre, now, cnt = 1, max = -2147000000;
+	cin >> n >> pre;
+
+	for (i = 2; i <= n; i++) {
+		cin >> now;
+		if (now >= pre) {
+			cnt++;
+			if (cnt > max) max = cnt;
+		}
+		else cnt = 1;
+		pre = now;
+	}
+	cout << max;
+
+	return 0;
+
+}
+```
+
+24. 유쾌한 점퍼 문제
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, res, pre, now;
+	cin >> n;
+	vector<int> a(n);
+
+	cin >> pre;
+
+	for (i = 1; i < n; i++) {
+		cin >> now;
+		res = abs(pre - now);
+		//abs: 연산값으 절댓값을 출력하는 함수
+		if (res > 0 && res < n && a[res] == 0) a[res] = 1;
+		//만약 뺄셈의 결과가 모두 다르고 범위내일 경우 벡터 a에 저장한 후 중복을 확인한다.
+		else {
+			cout << "No";
+			return 0;
+		}
+		pre = now;
+	}
+	cout << "Yes";
+	return 0;
+}
+```
+
