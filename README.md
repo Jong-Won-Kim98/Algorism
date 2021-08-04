@@ -670,3 +670,91 @@ int main() {
 }
 ```
 
+25. 1~100의 자연수 n을 입력하고 n개의 자연수가 입력 되었을 때 등수를 출력하시오(단, 같은 숫자일 경우 높은 석차로 동일하게 처리한다.)
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main() {
+	int n, i, j, b[101];
+	cin >> n;
+	vector<int> a(n);
+
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+		b[i] = 1;
+	}
+
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n; j++) {
+			if (a[i] > a[j]) b[j]++;
+		}
+	}
+	for (i = 0; i < n; i++) {
+		cout << b[i] << " ";
+	}
+
+	return 0;
+}
+```
+
+26. 마라톤 문제 (현재 n명의 선수가 달리고 있고 현재 달리고 있는 순서대로 각 선수들의 평균 실력을 입력했을 때 각 선수들의 마지막 최고로 올라갈 수 있는 순위를 예측하는 프로그램)
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, j, cnt;
+	cin >> n;
+	vector<int> a(n+1);
+	
+	for (i = 1; i <= n; i++) {
+		cin >> a[i];
+	}
+	cout << 1;
+	for (i = 2; i <= n; i++) {
+		cnt = 0;
+		for (j = i - 1; j >= 1; j--) {
+			if (a[j] >= a[i]) cnt++;
+		}
+		cout << cnt + 1 << " ";
+	}
+	return 0;
+}
+```
+
+27. N!의 표현법
+```C++
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main() {
+	int n, i, j, tmp;
+	cin >> n;
+	vector<int> ch(n + 1);
+	for (i = 2; i <= n; i++) {
+		tmp = i;
+		j = 2;
+		while (1) {
+			if (tmp % j == 0) {
+				tmp = tmp / j;
+				ch[j]++;
+			}
+			else j++;
+			if (tmp == 1) break;
+			// 소인수 분해를 통하여 소수들의 개수를 파악
+		}
+	}
+	cout << n << "!" << " =";
+	for (i = 2; i <= n; i++) {
+		if (ch[i] != 0) cout << ch[i] << " ";
+	}
+	return 0;
+}
+```
+
