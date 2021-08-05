@@ -758,3 +758,98 @@ int main() {
 }
 ```
 
+28. 자연수 n!을 구하고 0이 반복되는 횟수를 구하시오
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, j, tmp, cnt2 = 0, cnt5 = 0;
+
+	cin >> n;
+
+	for (i = 2; i <= n; i++) {
+		tmp = i;
+		j = 2;
+		while (1) {
+			if (tmp % j == 0) {
+				if (j == 2) cnt2++;
+				else if (j == 5)cnt5++;
+				tmp = tmp / j;
+			}
+			else j++;
+			if (tmp == 1) break;
+		}
+	}
+	if (cnt2 < cnt5) cout << cnt2;
+	else cout << cnt5;
+	
+	return 0;
+}
+```
+
+29. 1부터 자연수 n까지의 3의 개수를 구하시오.
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, tmp, i, cnt = 0, digit;
+
+	cin >> n;
+
+	for (i = 1; i <= n; i++) {
+		tmp = i;
+		while (tmp > 0) {
+			digit = tmp % 10;
+			//각 자리수를 하나하나 확인한다.
+			if (digit == 3) cnt++;
+			tmp = tmp / 10;
+		}
+	}
+	cout << cnt;
+
+	return 0;
+}
+```
+
+30. 탄화수소 질량 구하기
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int c = 0, h = 0, i, pos;
+	char a[10];
+
+	cin >> a;
+
+	if (a[1] == 'H') {
+		c = 1;
+		pos = 1;
+	}
+	else {
+		for (i = 1; a[i] != 'H'; i++) {
+			c = c * 10 + (a[i] - 48);
+		}
+		pos = i;
+	}
+	if (a[pos + 1] == '\0') {
+		h = 1;
+	}
+	else {
+		for (i = pos + 1; a[i] != '\0'; i++) {
+			h = h * 10 + (a[i] - 48);
+		}
+	}
+	cout << c * 12 + h;
+	return 0;
+}
+```
+
