@@ -853,3 +853,77 @@ int main() {
 }
 ```
 
+31. 복합 정렬
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, j, res, tmp;
+	cin >> n;
+	vector<int> a(n);
+
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 0; i < n; i++) {
+		res = i;
+		for (j = i + 1; j < n; j++) {
+			if (a[j] < a[res]) res = j;
+			//배열을 돌며 최소값의 위치를 찾아준다.
+		}
+		tmp = a[i];
+		a[i] = a[res];
+		a[res] = tmp;
+		//j for문을 통해 최소값의 인덱스 번호를 찾은 후 위치를 바꿔준다.
+	}
+	for (i = 0; i < n; i++) {
+		cout << a[i] << " ";
+	}
+
+	return 0;
+}
+```
+
+32. n명의 성적을 입력한 후 3등의 성적을 출력하시오(단, 동점자가 있을 경우 점수는 1개로 취급한다.)
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, j, res, tmp, cnt = 0;
+
+	cin >> n;
+	vector<int> a(n);
+
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 0; i < n; i++) {
+		res = i;
+		for (j = i + 1; j < n; j++) {
+			if (a[j] > a[res]) res = j;
+		}
+		tmp = a[i];
+		a[i] = a[res];
+		a[res] = tmp;
+	}
+	for (i = 1; i < n; i++) {
+		if (a[i] != a[i + 1]) cnt++;
+		if (cnt == 2) {
+			cout << a[i];
+			break;
+		}
+	}
+	return 0;
+}
+```
+
+33. 
+
+
+
