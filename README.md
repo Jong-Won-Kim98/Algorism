@@ -923,7 +923,100 @@ int main() {
 }
 ```
 
-33. 
+33. 버블 정렬
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, j, tmp;
+
+	cin >> n;
+	vector<int> a(n);
+
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n - i - 1; j++) {
+			if(a[j]>a[j+1]){
+				tmp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = tmp;
+			}
+		}
+	}
+	for (i = 0; i < n; i++) {
+		cout << a[i] << " ";
+	}
+	return 0;
+}
+```
+
+34. Special Sort
+```C++
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main() {
+	int n, i, j, tmp;
+	cin >> n;
+	vector<int> a(n);
+
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 0; i < n; i++) {
+		for (j = 0; j < n - i - 1; j++) {
+			if (a[j] > 0 && a[j + 1] < 0) {
+				tmp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = tmp;
+			}
+		}
+	}
+	for (i = 0; i < n; i++) {
+		cout << a[i] << " ";
+	}
+	return 0;
+}
+```
+
+35. 삽입 정렬
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, j, tmp;
+	cin >> n;
+	vector<int> a(n);
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 1; i < n; i++) {
+		tmp = a[i];
+		for (j = i - 1; j >= 0; j--) {
+			if (a[j] > tmp) {
+				a[j + 1] = a[j];
+			}
+			else break;
+		}
+		a[j + 1] = tmp;
+	}
+	for (i = 0; i < n; i++) {
+		cout << a[i] << " ";
+	}
+	return 0;
+}
+```
+
 
 
 
