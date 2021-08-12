@@ -1017,6 +1017,69 @@ int main() {
 }
 ```
 
+36. Least Recently Used
+```C++
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+	int n, i, j, tmp;
+	cin >> n;
+	vector<int> a(n);
+	for (i = 0; i < n; i++) {
+		cin >> a[i];
+	}
+	for (i = 1; i < n; i++) {
+		tmp = a[i];
+		for (j = i - 1; j >= 0; j--) {
+			if (a[j] > tmp) {
+				a[j + 1] = a[j];
+			}
+			else break;
+		}
+		a[j + 1] = tmp;
+	}
+	for (i = 0; i < n; i++) {
+		cout << a[i] << " ";
+	}
+	return 0;
+}
+```
+
+37. Inversion Sequence
+```C++
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+int main() {
+	int n, i, j, pos;
+	cin >> n;
+	vector<int> is(n + 1), os(n + 1);
+
+	for (i = 1; i <= n; i++) {
+		cin >> is[i];
+	}
+
+	for (i = n; i >= 1; i--) {
+		pos = i;
+		for (j = 1; j <= is[i]; j++) {
+			os[pos] = os[pos + 1];
+			pos++;
+		}
+		os[pos] = i;
+	}
+	for (i = 1; i <= n; i++) {
+		cout << os[i];
+	}
+	return 0;
+	/*오리지널 배열과 inversion 배열을 만들어 inversion 배열에 입력되어 있는 값 만큼 오리지널
+	배열에 값을 앞으로 땡겨가며 배열에 저장한다.*/
+}
+```
 
 
 
